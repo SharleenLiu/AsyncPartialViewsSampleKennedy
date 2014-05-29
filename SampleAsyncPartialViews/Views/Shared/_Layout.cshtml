@@ -1,0 +1,35 @@
+﻿@{
+	string homeLinkClass = (ViewBag.IsHome ?? false) ? "current" : null;
+	string asyncLinkClass = (ViewBag.IsHome ?? false) ? null : "current";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    <body>
+        <header>
+            Sample: Improve Perceived Performance with Async Partial Views
+        </header>
+		<div class="content">
+			<div style="float:right;">
+				<a href="~/home" class="nav @homeLinkClass">synchronous page</a>
+				<a href="~/async" class="nav @asyncLinkClass">async page</a>
+
+			</div>
+			@RenderBody()
+		</div>
+        <footer>
+            A sample by <a href="http://blog.michaelckennedy.net" target="_blank">Michael Kennedy</a> (<a  target="_blank" href="https://twitter.com/mkennedy">@@mkennedy</a>). All rights reserved.
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+		<script src="~/JS/site.js"></script>
+		<script>site.baseUrl = "@Url.Content("~/").TrimEnd('/')";</script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
